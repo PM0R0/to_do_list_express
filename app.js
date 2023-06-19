@@ -1,6 +1,6 @@
 const express = require('express'); //Importa o express
 const checkListRouter = require('./src/routes/checklist');
-
+require('./config/database');
 
 const app = express();
 app.use(express.json());
@@ -36,7 +36,7 @@ app.listen(3000, () => { //Escuta porta 3000
     console.log('Servidor foi Iniciado');
 })
 
-/*
+/*Para iniciar utilize npx nodemon 
     Instalado nodemon -> Servidor de desenvolvimento que monitora os arquivos
         npm i nodemon --save-dev
 
