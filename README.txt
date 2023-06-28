@@ -21,3 +21,6 @@ USO DO MONGOOSE
 
     Criado pasta models em src, e adicionado as collections checklist.js e task.js
     
+
+INSTALAÇÃO DO EJS
+    npm i ejs
