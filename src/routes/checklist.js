@@ -14,6 +14,15 @@ router.get('/', async (req,res) => {
    }
 })
 
+router.get('/new', async(req,res) => {
+    try{
+        let checklist = new Checklist();
+        res.status(200).render('checklists/new', {checklist: checklist});
+    } catch(err) {
+        res.status(500).render('pages/error', {errors: "Erro ao carregar o formulario"});
+    }
+})
+
 //Parametros nas rotas
     /* Pesquisar checklist por id */
 router.get('/:id', async (req,res) => {
@@ -28,13 +37,14 @@ router.get('/:id', async (req,res) => {
 //Chamada POST
         /* Inserção de nova tarefa */
 router.post('/',async (req,res) => {
-    const {name} = req.body
+    let {name} = req.body.checklist;
+    let checklist = new Checklist({name})
 
     try {
-        let checklist = await Checklist.create({name})
-        res.status(200).json(checklist); //Mensagens numericas padrões Ex:404
+        await checklist.save();
+        res.redirect('/checklists') //Mensagens numericas padrões Ex:404
     } catch (error) {
-        res.status(422).json(error)
+        res.status(422).render('checklists/new', {checklists: {...checklist, error}})
     }
 })
 

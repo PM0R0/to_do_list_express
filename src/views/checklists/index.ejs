@@ -9,12 +9,12 @@
           <h1 class="title size-4">Listas de Tarefas</h1>
         </div>
         <div class="column is-one-fifth">
-          <a href="checklist-form.html" class="button is-success is-small">Nova Lista</a>
+          <a href="/checklists/new" class="button is-success is-small">Nova Lista</a>
         </div>
       </div>
 
       <div class="columns is-multiline">
-        <% checklists.forEach(checklist => { %>
+        <% checklists.forEach(checklist => { %> <!-- Inicio ForEach -->
         <div class="column is-one-quarter">
           <div class="card has-background-white-ter">
             <div class="card-content">
@@ -22,7 +22,7 @@
                 <%= checklist.name %>
               </p>
               <p class="subtitle is-size-6">
-                <%= checklist.tasks.count %> Tarefas
+                <%= checklist.tasks.count %> Tarefas 
               </p>
             </div>
             <footer class="card-footer">
@@ -44,7 +44,7 @@
             </footer>
           </div>
         </div>
-        <% }) %>
+        <% }) %> <!-- Final ForEach -->
       </div>
     </div>
   </section>
