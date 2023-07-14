@@ -7,10 +7,10 @@ const router = express.Router(); //Ferramenta do express | Permite criar rotas e
     /* Pesquisar todas as checklists */
 router.get('/', async (req,res) => {
    try {
-    const checklists = await Checklist.find({});
-    res.status(200).json(checklists);
+    let checklists = await Checklist.find({});
+    res.status(200).render('checklists/index', {checklists: checklists})
    } catch (error) {
-    res.status(500).json(error)
+    res.status(500).render('pages/error', {error: 'erro ao exibir as Listas.'});
    }
 })
 
@@ -19,9 +19,9 @@ router.get('/', async (req,res) => {
 router.get('/:id', async (req,res) => {
     try {
         const checklist = await Checklist.findById(req.params.id);
-        res.status(200).json(checklist);
+        res.status(200).render('checklist/show', {checklist: checklist})
     } catch (error) {
-        res.status(422).json(error);
+        res.status(422).render('pages/error', {error: 'Erro ao exibir as Listas'});
     }
 })
 
