@@ -17,7 +17,7 @@ app.set('views', path.join(__dirname,'src/views'));
 app.set('view engine', 'ejs');
 
 app.use('/', rootRouter)
-app.use('/checklist', checkListRouter); //Utilizando o modulo como um middleware
+app.use('/checklists', checkListRouter); //Utilizando o modulo como um middleware
 
 /*
         PRATICA COM EXPRESS 
@@ -45,7 +45,7 @@ app.get('/json', (req,res) => {
 })
 */
 app.listen(3000, () => { //Escuta porta 3000
-    console.log('Servidor foi Iniciado');
+    console.log('Servidor foi Iniciado na porta 3000');
 })
 
 /*Para iniciar utilize npx nodemon 

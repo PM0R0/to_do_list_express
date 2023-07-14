@@ -1,6 +1,6 @@
 //Organizando rotas
 const express = require('express');
-const Checklist = require('../models/checklist')
+const Checklist = require('../models/checklist');
 const router = express.Router(); //Ferramenta do express | Permite criar rotas entre arquivos
 
 //Chamada GET
@@ -18,8 +18,8 @@ router.get('/', async (req,res) => {
     /* Pesquisar checklist por id */
 router.get('/:id', async (req,res) => {
     try {
-        const checklist = await Checklist.findById(req.params.id);
-        res.status(200).render('checklist/show', {checklist: checklist})
+        let checklist = await Checklist.findById(req.params.id);
+        res.status(200).render('checklists/show', {checklist: checklist})
     } catch (error) {
         res.status(422).render('pages/error', {error: 'Erro ao exibir as Listas'});
     }
