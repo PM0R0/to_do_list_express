@@ -36,7 +36,7 @@ router.get('/:id/edit', async(req,res) => {
     /* Pesquisar checklist por id */
 router.get('/:id', async (req,res) => {
     try {
-        let checklist = await Checklist.findById(req.params.id);
+        let checklist = await Checklist.findById(req.params.id).populate('tasks');// aggregate
         res.status(200).render('checklists/show', {checklist: checklist})
     } catch (error) {
         res.status(422).render('pages/error', {error: 'Erro ao exibir as Listas'});
@@ -77,7 +77,7 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req,res) => {
     try {
         const checklist = await Checklist.findByIdAndRemove(req.params.id);
-        res.redirect('checklists');
+        res.redirect('/checklists');
     } catch (error) {
         res.status(422).render('checklists/edit', { error: 'Erro ao deletar a Lista de tarefas' });
     }
