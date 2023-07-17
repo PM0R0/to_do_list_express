@@ -23,6 +23,15 @@ router.get('/new', async(req,res) => {
     }
 })
 
+router.get('/:id/edit', async(req,res) => {
+    try {
+        let checklist = await Checklist.findById(req.params.id);
+        res.status(200).render('checklists/edit', { checklist: checklist })
+    } catch (error) {
+        res.status(500).render('pages/error', {errors: "Erro ao exibir a edição"});
+    }
+})
+
 //Parametros nas rotas
     /* Pesquisar checklist por id */
 router.get('/:id', async (req,res) => {
@@ -51,12 +60,15 @@ router.post('/',async (req,res) => {
 //PUT
     /* Atualizar checklist */
 router.put('/:id', async (req,res) => {
+    let { name } = req.body.checklist;
+    let checklist = await Checklist.findById(req.params.id);
+
     try {
-        const { name } = req.body;
-        const checklist = await Checklist.findByIdAndUpdate(req.params.id, {name}, {new: true});
-        res.status(200).json(checklist)
+        await checklist.updateOne({name});//Corrigido da Aula
+        res.redirect('/checklists');
     } catch (error) {
-        res.status(422).json(error);
+        let errors = error.errors;
+        res.status(422).render('checklists/edit', { checklist: { ...checklist,errors } });
     }
 })
 
@@ -65,9 +77,9 @@ router.put('/:id', async (req,res) => {
 router.delete('/:id', async (req,res) => {
     try {
         const checklist = await Checklist.findByIdAndRemove(req.params.id);
-        res.status(200).json(checklist)
+        res.redirect('checklists');
     } catch (error) {
-        res.status(422).json(error);
+        res.status(422).render('checklists/edit', { error: 'Erro ao deletar a Lista de tarefas' });
     }
 })
 

@@ -38,3 +38,8 @@ PARTIALS
     
     Foi fracionado o conteudo do index.ejs
         Utilizando <%- ('pathTarget') %>
+
+PACOTE MethodOverride
+    Pacote que lê atributo na requisição e transforma a Chamada
+
+    > npm i method-override --save
