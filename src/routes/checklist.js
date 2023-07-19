@@ -5,6 +5,7 @@ const router = express.Router(); //Ferramenta do express | Permite criar rotas e
 
 //Chamada GET
     /* Pesquisar todas as checklists */
+    //Utilizado 'async' para evitar utilização excessiva do then()catch()
 router.get('/', async (req,res) => {
    try {
     let checklists = await Checklist.find({});
@@ -51,7 +52,7 @@ router.post('/',async (req,res) => {
 
     try {
         await checklist.save();
-        res.redirect('/checklists') //Mensagens numericas padrões Ex:404
+        res.redirect('/checklists')
     } catch (error) {
         res.status(422).render('checklists/new', {checklists: {...checklist, error}})
     }
