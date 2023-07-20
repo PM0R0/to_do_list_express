@@ -24,8 +24,7 @@ include('../layouts/menu.ejs')%>
       <div
         class="column is-four-fifths <%= task.done ? 'has-text-success is-italic' : '' %>"
       >
-        <input type="checkbox" onchange="setTagAsDone(this, '<%= task._id %>')"
-        <%= task.done ? 'checked' : '' %>/> <%= task.name %>
+        <input type="checkbox" onchange="setTagAsDone(this, '<%= task._id %>')"<%= task.done ? 'checked' : '' %>/> <%= task.name %>
       </div>
 
       <div class="column is-one-fifth">
