@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname,'src/views'));
 app.set('view engine', 'ejs');
 
-app.use('/', rootRouter)
+app.use('/', rootRouter) //Renderiza a pagina inicial
 app.use('/checklists', checkListRouter); //Utilizando o modulo como um middleware
 app.use('/checklists', taskRouter.checklistDepedent);
 app.use('/tasks', taskRouter.simple);

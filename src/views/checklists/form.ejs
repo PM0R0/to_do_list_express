@@ -3,13 +3,13 @@
       <label class="label">Nome</label>
       <div class="control">
         <input class="input" type="text" name="checklist[name]" placeholder="Lista de Tarefas" value="<%= checklist.name %>">
-        <% if(checklist.errors && checklist.error.hasOwnProperty('name')) { %>
-        <p class="is-danger help"><%= checklist.error.name.message %></p>
+        <% if(checklist.errors && checklist.error.hasOwnProperty('name')) { %> <!-- Trata penas ocorra erro na propriedade 'name' -->
+        <p class="is-danger help"><%= checklist.error.name.message %></p> <!-- Message: Vem do mongoose -->
         <% } %>
       </div>
     </div>
 
     <button type="submit" class="button is-success">Salvar</button>
-    <a href="/checklists/" class="button">Cancelar</a>
+    <a href="/checklists" class="button">Cancelar</a>
   </form>
   
